@@ -1,9 +1,9 @@
 {% extends 'tools/base.html' %}
 
 {% block content %}
-  <h1>Hey there! This is the home page!</h1>
+<h2>Welcome to Howdy Neighbor!</h2>
   <nav>
-    Filter by any of the following tags:
+    Filter by any of the following tags:<br><br>
     <a href="{% url 'tools:index' %}">ALL</a>
     Availability:
     <a href="{% url 'tools:selection' 'hours' %}">Hours</a>
@@ -15,7 +15,7 @@
     Other:
     <a href="{% url 'tools:selection' 'recent' %}">Recent</a>
     <a href="{% url 'tools:selection' 'popular'%}">Popular</a>
-  </nav>
+  </nav><br><br>
 {% for object in object_list %}
   <form action="{% url 'tools:increment_watchers' object.id %}" method='post'>
     {% csrf_token %}
