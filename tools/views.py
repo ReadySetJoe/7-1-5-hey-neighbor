@@ -19,9 +19,19 @@ class IndexView(LoginRequiredMixin, generic.ListView):
         if 'user' in self.kwargs:
             if 'selection' in self.kwargs:
                 return Tools.objects.filter(available=self.kwargs['selection'].upper(), watcher__gte=1)
-            return Tools.objects.filter(watchers__gte=1)
+
         if 'selection' in self.kwargs:
-            return Tools.objects.filter(available=self.kwargs['selection'].upper())
+            ndx = self.kwargs['selection']
+            if ndx == 'days' or ndx == 'hours' or ndx == 'weeks':
+                return Tools.objects.filter(available=self.kwargs['selection'].upper())
+            if ndx == 'powered':
+                return Tools.objects.filter(powered=True)
+            if ndx == 'unpowered':
+                return Tools.objects.filter(powered=False)
+            if ndx == 'recent':
+                return Tools.objects.all().order_by('-id')[:3]
+            if ndx == 'popular':
+                return Tools.objects.filter(watchers__gte=1)
         return Tools.objects.all()
 
 
@@ -49,4 +59,3 @@ def increment_watchers(request, pk):
     tool.watchers += 1
     tool.save()
     return HttpResponseRedirect(reverse('tools:index'))
-

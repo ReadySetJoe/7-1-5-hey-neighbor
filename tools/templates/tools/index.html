@@ -5,7 +5,16 @@
   <nav>
     Filter by any of the following tags:
     <a href="{% url 'tools:index' %}">ALL</a>
-    <a href="{% url 'tools:user' %}">My Tools</a>
+    Availability:
+    <a href="{% url 'tools:selection' 'hours' %}">Hours</a>
+    <a href="{% url 'tools:selection' 'days' %}">Days</a>
+    <a href="{% url 'tools:selection' 'weeks' %}">Weeks</a>
+    Power Tools:
+    <a href="{% url 'tools:selection' 'powered' %}">Powered</a>
+    <a href="{% url 'tools:selection' 'unpowered' %}">Unpowered</a>
+    Other:
+    <a href="{% url 'tools:selection' 'recent' %}">Recent</a>
+    <a href="{% url 'tools:selection' 'popular'%}">Popular</a>
   </nav>
 {% for object in object_list %}
   <form action="{% url 'tools:increment_watchers' object.id %}" method='post'>
