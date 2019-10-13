@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
-    'ice_cream.apps.IceCreamConfig',
-    'brochure.apps.BrochureConfig',
     'accounts.apps.AccountsConfig',
     'tools.apps.ToolsConfig',
 ]

@@ -16,6 +16,10 @@ class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = 'tools/index.html'
 
     def get_queryset(self):
+        if 'user' in self.kwargs:
+            if 'selection' in self.kwargs:
+                return Tools.objects.filter(available=self.kwargs['selection'].upper(), watcher__gte=1)
+            return Tools.objects.filter(watchers__gte=1)
         if 'selection' in self.kwargs:
             return Tools.objects.filter(available=self.kwargs['selection'].upper())
         return Tools.objects.all()
@@ -23,7 +27,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 
 class CreateView(UserPassesTestMixin, generic.CreateView):
     model = Tools
-    template_name = 'tools/create.html'
+    template_name = 'tools/tools_new.html'
     fields = '__all__'
 
     def test_func(self):
@@ -45,3 +49,4 @@ def increment_watchers(request, pk):
     tool.watchers += 1
     tool.save()
     return HttpResponseRedirect(reverse('tools:index'))
+

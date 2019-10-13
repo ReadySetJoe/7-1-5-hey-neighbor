@@ -3,9 +3,9 @@ from datetime import date
 from django.urls import reverse
 
 class Tools(models.Model):
-    WEEKS = 'WEEKLS'
-    DAYS = 'DAYS'
     HOURS = 'HOURS'
+    DAYS = 'DAYS'
+    WEEKS = 'WEEKS'
 
     AVAILABLE_CHOICES = [
         (HOURS, 'Hours'),

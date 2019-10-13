@@ -1,0 +1,11 @@
+{% block header %}
+<nav>
+  <a href="{% url 'tools:index' %}">Home</a>
+  <a href="{% url 'tools:user' %}">My Tools</a>
+  {% if user.is_authenticated %}
+  <a href="{% url 'logout' %}">Logout</a>
+  {% else %}
+  <a href="{% url 'login' %}">Login</a> or <a href="{% url 'signup' %}">Sign Up</a>
+  {% endif %}
+</nav>
+{% endblock header %}
