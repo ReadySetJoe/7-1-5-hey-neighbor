@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ice_cream.apps.IceCreamConfig',
     'brochure.apps.BrochureConfig',
     'accounts.apps.AccountsConfig',
+    'tools.apps.ToolsConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,5 +128,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-LOGIN_REDIRECT_URL = '/icecream/'
+LOGIN_REDIRECT_URL = '/tools/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
